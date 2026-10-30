@@ -48,6 +48,7 @@ const description = "Maquette non officielle. Entrecôte sauce Caravelle depuis 
   <main id="contenu"><slot /></main>
 
   <footer class="pied">
+    <p class="signature" translate="no">Café de l'Aviation</p>
     <p>Maquette non officielle, réalisée sans lien avec le restaurant. Contenu repris de laviation.ch et du compte Instagram du restaurant.</p>
   </footer>
 
@@ -72,8 +73,9 @@ const description = "Maquette non officielle. Entrecôte sauce Caravelle depuis 
 .entete nav a{display:flex;align-items:center;min-height:var(--cible);text-decoration:none;font-weight:600}
 .entete nav a:hover,.marque:hover,.tel:hover{color:var(--sauce)}
 .tel{display:flex;align-items:center;min-height:var(--cible);font-weight:600;text-decoration:none;white-space:nowrap}
-.pied{background:var(--noir);color:var(--blanc);padding:22px var(--gut) 30px;font-size:16px}
-.pied p{max-width:72ch}
+.pied{background:var(--noir);color:var(--blanc);padding:clamp(24px,3vw,40px) var(--gut) 30px;font-size:16px}
+.signature{font:900 12.6vw/.9 var(--titre);text-transform:uppercase;color:var(--sauce);white-space:nowrap;margin-bottom:16px}
+.pied p:not(.signature){max-width:72ch}
 .barre,.menu{display:none}
 @media (max-width:860px){
   body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}

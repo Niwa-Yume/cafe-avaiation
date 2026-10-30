@@ -36,16 +36,8 @@ import salle from '../assets/salle-maquettes.jpg';
     </ul>
   </section>
 
-  <section class="bord" id="bord" aria-labelledby="titre-bord">
-    <Hublot src={salle} alt="Maquettes d'avions sur un muret, devant la salle aux nappes rouges" />
-    <div>
-      <h2 id="titre-bord" class="titre h2">À bord</h2>
-      <p>Des maquettes sur le muret, de vrais fauteuils d'avion à table, des nappes rouges et une terrasse aux beaux jours.</p>
-      <p>Ici, on vient pour l'entrecôte du midi comme pour le dernier repas avant le vol.</p>
-    </div>
-  </section>
-
   <section class="sauce" aria-labelledby="titre-sauce">
+    <svg class="coulure" viewBox="0 0 1440 120" preserveAspectRatio="xMidYMin slice" aria-hidden="true" focusable="false"><path d="M0 0h1440v26c-34 0-46 16-84 16-30 0-30 54-58 54s-24-52-58-52c-40 0-46-18-92-18-38 0-40 76-72 76s-30-74-70-74c-44 0-52 22-92 22-30 0-26 44-52 44s-24-46-60-46c-42 0-52-20-96-20-36 0-34 62-64 62s-30-62-68-62c-40 0-50 16-90 16-30 0-30 34-54 34s-26-36-58-36c-34 0-48-18-82-18Z"/></svg>
     <div>
       <h2 id="titre-sauce" class="titre h2">La sauce</h2>
       <p class="chapeau">Servie sur l'entrecôte depuis 1959. La recette reste dans la maison.</p>
@@ -59,6 +51,16 @@ import salle from '../assets/salle-maquettes.jpg';
         <button type="button" data-reponse="Secret depuis 1959."><span data-barre aria-hidden="true">xxxxxxxxxxxxxxx</span><span class="visually-hidden">Ingrédient caché, tenter de lire</span></button>
       </dd></div>
     </dl>
+  </section>
+
+  <div class="fuselage" aria-hidden="true"></div>
+  <section class="bord" id="bord" aria-labelledby="titre-bord">
+    <Hublot src={salle} alt="Maquettes d'avions sur un muret, devant la salle aux nappes rouges" />
+    <div>
+      <h2 id="titre-bord" class="titre h2">À bord</h2>
+      <p>Des maquettes sur le muret, de vrais fauteuils d'avion à table, des nappes rouges et une terrasse aux beaux jours.</p>
+      <p>Ici, on vient pour l'entrecôte du midi comme pour le dernier repas avant le vol.</p>
+    </div>
   </section>
 
   <section class="reste" id="carte" aria-labelledby="titre-carte">
@@ -153,12 +155,16 @@ h1{font-size:clamp(84px,8.2vw,150px);line-height:.86;color:var(--sauce)}
 .souche{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:12px -16px 0;padding:0 16px;height:80px;border-top:3px dashed var(--noir);font:400 16px/1.2 var(--donnee)}
 .prix-grand{font:900 clamp(32px,3vw,44px)/1 var(--titre)}
 
-.bord{background:var(--nappe);color:var(--blanc);padding:var(--section) var(--gut);display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.fuselage{height:112px;background:var(--blanc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='92' viewBox='0 0 72 92'%3E%3Cpath transform='translate(20 34) scale(.36)' fill='%23111' d='M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z'/%3E%3C/svg%3E") repeat-x left top;border-bottom:14px solid var(--sauce)}
+.bord{background:var(--nappe);color:var(--blanc);padding:0 var(--gut) var(--section);display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:start}
+.bord :global(.hublot){margin-top:-92px;position:relative}
+.bord>div{padding-top:clamp(28px,4vw,56px)}
 .bord h2{color:var(--sauce);margin-bottom:14px}
 .bord p{font-size:clamp(19px,1.6vw,23px);line-height:1.35;max-width:44ch;margin-top:10px}
 
-.sauce{background:var(--noir);color:var(--blanc);padding:var(--section) var(--gut);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px)}
+.sauce{position:relative;background:var(--noir);color:var(--blanc);padding:calc(var(--section) + clamp(40px,4vw,70px)) var(--gut) var(--section);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px)}
 .sauce h2{color:var(--sauce)}
+.coulure{position:absolute;inset:-1px 0 auto;width:100%;height:clamp(70px,8vw,120px);fill:var(--sauce);transform-origin:top}
 .dossier{font-family:var(--donnee)}
 .dossier>div{display:grid;grid-template-columns:13ch 1fr;gap:4px 14px;padding:12px 0;border-top:2px solid var(--gris-filet)}
 .dossier dt{font-weight:700}
@@ -172,7 +178,8 @@ h1{font-size:clamp(84px,8.2vw,150px);line-height:.86;color:var(--sauce)}
 .reste{background:var(--blanc);padding:var(--section) var(--gut)}
 .reste h2{color:var(--nappe)}
 .colonnes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);margin-top:20px}
-.colonnes h3,.venir h3{font-weight:600;font-size:21px;margin-bottom:8px}
+.venir h3{font-weight:600;font-size:21px;margin-bottom:8px}
+.colonnes h3{font:900 32px/1 var(--titre);text-transform:uppercase;margin-bottom:10px}
 .note{margin-top:18px;font-weight:600}
 
 .aujourdhui{display:none}
@@ -193,6 +200,13 @@ h1{font-size:clamp(84px,8.2vw,150px);line-height:.86;color:var(--sauce)}
 .horaires dd{margin:0;font-family:var(--donnee)}
 address{font-style:normal;font-weight:600}
 
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .coulure{animation:coule linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+    @keyframes coule{from{transform:scaleY(.2)}}
+  }
+}
+
 @media (max-width:860px){
   .premier{min-height:0}
   .accueil{grid-template-columns:minmax(0,1fr)}
@@ -207,6 +221,8 @@ address{font-style:normal;font-weight:600}
   .silhouette{position:absolute;right:8px;top:6px;width:calc(var(--g)*.13px)}
   .billet h3{margin-top:8px;padding-right:40px}
   .bord,.sauce,.colonnes,.venir-grille,.escale-grille{grid-template-columns:minmax(0,1fr)}
-  .bord :global(.hublot){max-width:280px;justify-self:center}
+  .fuselage{height:96px}
+  .bord :global(.hublot){max-width:280px;justify-self:center;margin-top:-76px}
+  .bord>div{padding-top:0}
 }
 </style>
