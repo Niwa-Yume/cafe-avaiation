@@ -26,10 +26,23 @@ const description = "Maquette non officielle. Entrecôte sauce Caravelle depuis 
         <li><a href="/#departs">Départs</a></li>
         <li><a href="/#flotte">La flotte</a></li>
         <li><a href="/#carte">La carte</a></li>
+        <li><a href="/#escale">Hôtel et groupes</a></li>
         <li><a href="/#venir">Venir</a></li>
       </ul>
     </nav>
     <a class="tel" href={`tel:${tel}`}>{telAffiche}</a>
+    <details class="menu">
+      <summary>Menu</summary>
+      <nav aria-label="Menu mobile">
+        <ul>
+          <li><a href="/#departs">Plats du jour</a></li>
+          <li><a href="/#flotte">Les entrecôtes</a></li>
+          <li><a href="/#carte">La carte</a></li>
+          <li><a href="/#escale">Hôtel et groupes</a></li>
+          <li><a href="/#venir">Venir et se garer</a></li>
+        </ul>
+      </nav>
+    </details>
   </header>
 
   <main id="contenu"><slot /></main>
@@ -43,6 +56,12 @@ const description = "Maquette non officielle. Entrecôte sauce Caravelle depuis 
     <a href={maps}>Itinéraire</a>
     <a href="/#carte">La carte</a>
   </nav>
+
+  <script>
+    // Le menu se referme quand on choisit une destination
+    const menu = document.querySelector('.menu');
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) menu.open = false; });
+  </script>
 </body>
 </html>
 
@@ -55,10 +74,17 @@ const description = "Maquette non officielle. Entrecôte sauce Caravelle depuis 
 .tel{display:flex;align-items:center;min-height:var(--cible);font-weight:600;text-decoration:none;white-space:nowrap}
 .pied{background:var(--noir);color:var(--blanc);padding:22px var(--gut) 30px;font-size:16px}
 .pied p{max-width:72ch}
-.barre{display:none}
+.barre,.menu{display:none}
 @media (max-width:860px){
   body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
-  .entete nav{display:none}
+  .entete{position:relative}
+  .entete>nav,.tel{display:none}
+  .menu{display:block}
+  .menu summary{min-height:var(--cible);min-width:var(--cible);display:flex;align-items:center;font:900 22px/1 var(--titre);text-transform:uppercase;cursor:pointer;list-style:none;color:var(--sauce)}
+  .menu summary::-webkit-details-marker{display:none}
+  .menu nav{position:absolute;inset:100% 0 auto;background:var(--noir);padding:4px var(--gut) 16px;z-index:6;border-top:2px solid var(--gris-filet)}
+  .menu ul{flex-direction:column;gap:0}
+  .menu nav a{min-height:52px;font:900 30px/1 var(--titre);text-transform:uppercase;border-bottom:2px solid var(--gris-filet)}
   .barre{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;position:fixed;inset:auto 0 0;background:var(--sauce);padding-bottom:env(safe-area-inset-bottom);z-index:5}
   .barre a{background:var(--noir);color:var(--blanc);min-height:var(--barre);display:flex;align-items:center;justify-content:center;text-decoration:none;font:900 21px/1 var(--titre);text-transform:uppercase}
   .barre a:first-child{background:var(--sauce);color:var(--noir)}

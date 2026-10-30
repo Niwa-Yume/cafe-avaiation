@@ -47,6 +47,12 @@ const libelle = (date) => {
     const message = annonce(rangs.map((r) => r.dataset.date), jour);
     if (message) tableau.querySelector('[data-annonce]').textContent = message;
 
+    // Raccourci mobile de l'accueil : le plat du jour sans défiler
+    const raccourci = document.querySelector('[data-aujourdhui]');
+    const duJour = tableau.querySelector('[data-etat="Embarquement"] .plat');
+    if (raccourci && duJour) raccourci.textContent = `Aujourd'hui : ${duJour.textContent}`;
+    else if (raccourci && message) raccourci.textContent = message;
+
     // Un seul passage du tableau à palettes, sur le statut du jour
     const cible = tableau.querySelector('[data-etat="Embarquement"] [data-statut]');
     if (!cible || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -92,4 +98,10 @@ ol{flex:1;display:flex;flex-direction:column}
 .rang[data-etat="Embarquement"] .statut{color:var(--noir);font-size:1.25em}
 .vide{padding:16px 0;border-top:2px solid var(--bord)}
 .fixe{padding-top:14px;border-top:2px solid var(--bord);display:grid;grid-template-columns:6.4ch 1fr;gap:16px;color:var(--sauce);font-size:clamp(16px,1.4vw,20px)}
+@media (max-width:860px){
+  /* Les jours passés se réduisent : le plat du jour remonte */
+  .rang[data-etat="Parti"]{grid-template-columns:6.4ch minmax(0,1fr) auto;padding-block:10px}
+  .rang[data-etat="Parti"] .plat{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rang[data-etat="Parti"] .statut{grid-column:3;grid-row:1}
+}
 </style>

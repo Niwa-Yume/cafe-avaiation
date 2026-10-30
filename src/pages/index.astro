@@ -14,6 +14,7 @@ import salle from '../assets/salle-maquettes.jpg';
       <div class="accueil-texte">
         <h1 class="titre">Entrecôte<br>sauce<br>Caravelle</h1>
         <p class="promesse">Recette secrète depuis 1959. Une table familiale depuis 1950, à côté de Genève Aéroport.</p>
+        <a class="aujourdhui" href="#departs" data-aujourdhui>Voir les plats de la semaine</a>
         <a class="reserver" href={`tel:${tel}`}>Réserver au {telAffiche}</a>
       </div>
       <div class="accueil-scene"><Table /></div>
@@ -77,6 +78,22 @@ import salle from '../assets/salle-maquettes.jpg';
       </div>
     </div>
     <p class="note">Toutes nos viandes sont servies avec frites maison.</p>
+  </section>
+
+  <section class="escale" id="escale" aria-labelledby="titre-escale">
+    <h2 id="titre-escale" class="titre h2">Faire escale</h2>
+    <div class="escale-grille">
+      <article>
+        <h3 class="titre">Hôtel de l'Aviation</h3>
+        <p>11 chambres, simples ou doubles, avec douche et WC, TV et Wi-Fi. Dites-nous vos dates et votre heure d'arrivée, nous vous envoyons une offre.</p>
+        <a href={`tel:${tel}`}>Demander une chambre</a>
+      </article>
+      <article>
+        <h3 class="titre">Groupes et événements</h3>
+        <p>Repas d'équipe, anniversaire ou grande tablée : appelez-nous pour organiser votre venue.</p>
+        <a href={`tel:${tel}`}>Organiser un repas</a>
+      </article>
+    </div>
   </section>
 
   <section class="venir" id="venir" aria-labelledby="titre-venir">
@@ -158,6 +175,16 @@ h1{font-size:clamp(84px,8.2vw,150px);line-height:.86;color:var(--sauce)}
 .colonnes h3,.venir h3{font-weight:600;font-size:21px;margin-bottom:8px}
 .note{margin-top:18px;font-weight:600}
 
+.aujourdhui{display:none}
+.escale{background:var(--noir);color:var(--blanc);padding:var(--section) var(--gut)}
+.escale h2{color:var(--sauce)}
+.escale-grille{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);margin-top:24px}
+.escale article{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-top:2px solid var(--gris-filet);padding-top:16px}
+.escale h3{font-size:clamp(32px,3.2vw,46px);line-height:.95}
+.escale p{max-width:50ch;flex:1}
+.escale a{display:flex;align-items:center;min-height:52px;padding:0 20px;background:var(--sauce);color:var(--noir);text-decoration:none;font:900 24px/1 var(--titre);text-transform:uppercase}
+.escale a:hover{background:var(--blanc)}
+
 .venir{padding:var(--section) var(--gut)}
 .venir-grille{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);margin-top:20px}
 .horaires{margin-bottom:18px}
@@ -172,13 +199,14 @@ address{font-style:normal;font-weight:600}
   .accueil-texte{padding-bottom:0;gap:12px}
   h1{font-size:22.4vw}
   .reserver{display:none}
-  .accueil-scene{height:64vw;max-height:330px}
+  .aujourdhui{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;width:100%;min-height:calc(2*1.3em + 20px);padding:10px 12px;background:var(--noir);color:var(--blanc);font-weight:600;line-height:1.3;text-decoration:none}
+  .accueil-scene{height:52vw;max-height:300px}
   .accueil-scene :global(.table){inset:-18% auto auto 4%;width:112%;height:150%}
   .echelle{flex-direction:column}
   .billet{flex:none;width:calc(56% + var(--g)*.088%);padding-right:16px}
   .silhouette{position:absolute;right:8px;top:6px;width:calc(var(--g)*.13px)}
   .billet h3{margin-top:8px;padding-right:40px}
-  .bord,.sauce,.colonnes,.venir-grille{grid-template-columns:minmax(0,1fr)}
+  .bord,.sauce,.colonnes,.venir-grille,.escale-grille{grid-template-columns:minmax(0,1fr)}
   .bord :global(.hublot){max-width:280px;justify-self:center}
 }
 </style>
