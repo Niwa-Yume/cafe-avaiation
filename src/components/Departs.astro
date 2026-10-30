@@ -1,0 +1,95 @@
+---
+import { telAffiche, tel } from '../data/infos.json';
+
+const { plats: saisis = [], prix } = Astro.props;
+const plats = saisis.filter(({ date, plat }) => date && plat?.trim());
+const jours = new Intl.DateTimeFormat('fr-CH', { weekday: 'short', day: 'numeric', timeZone: 'UTC' });
+const libelle = (date) => {
+  const [j, n] = jours.format(new Date(`${date}T12:00:00Z`)).replace('.', '').split(' ');
+  return `${j[0].toUpperCase()}${j.slice(1)} ${n}`;
+};
+---
+<section class="tableau" id="departs" aria-labelledby="titre-departs" data-departs>
+  <h2 id="titre-departs" class="titre">Départs du jour</h2>
+  <p class="sous">Plat du jour{prix && ` à ${prix.replace('.–', '')} francs`}, mardi à vendredi</p>
+  <p class="annonce" data-annonce role="status"></p>
+
+  {plats.length > 0 ? (
+    <ol>
+      {plats.map(({ date, plat }) => (
+        <li class="rang" data-date={date}>
+          <time class="jour" datetime={date}>{libelle(date)}</time>
+          <span class="plat">{plat}</span>
+          <span class="statut" data-statut></span>
+        </li>
+      ))}
+    </ol>
+  ) : (
+    <p class="vide">Appelez le <a href={`tel:${tel}`}>{telAffiche}</a> pour connaître le plat du jour.</p>
+  )}
+
+  <p class="fixe"><span>Cuisine</span><span>11h30 à 14h30 et 19h00 à 22h15</span></p>
+</section>
+
+<script>
+  import { annonce, aujourdhuiGeneve, statut } from '../lib/departs.js';
+
+  document.querySelectorAll('[data-departs]').forEach((tableau) => {
+    const jour = aujourdhuiGeneve();
+    const rangs = [...tableau.querySelectorAll('[data-date]')];
+
+    rangs.forEach((rang) => {
+      const valeur = statut(rang.dataset.date, jour);
+      rang.dataset.etat = valeur;
+      rang.querySelector('[data-statut]').textContent = valeur;
+    });
+
+    const message = annonce(rangs.map((r) => r.dataset.date), jour);
+    if (message) tableau.querySelector('[data-annonce]').textContent = message;
+
+    // Un seul passage du tableau à palettes, sur le statut du jour
+    const cible = tableau.querySelector('[data-etat="Embarquement"] [data-statut]');
+    if (!cible || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const mot = cible.textContent;
+    const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let i = 0;
+    const t = setInterval(() => {
+      i += 0.5;
+      cible.textContent = [...mot].map((c, n) => (n < i ? c : abc[(Math.random() * 26) | 0])).join('');
+      if (i >= mot.length) { clearInterval(t); cible.textContent = mot; }
+    }, 32);
+  });
+</script>
+
+<style>
+.tableau{--bord:var(--gris-filet);background:var(--noir);color:var(--blanc);padding:clamp(16px,1.8vw,26px) var(--gut);font-family:var(--donnee);display:flex;flex-direction:column}
+h2{font-size:clamp(38px,3.6vw,54px);line-height:.95;color:var(--sauce)}
+.sous{font-size:16px;color:var(--gris-tableau);margin:6px 0 14px}
+.annonce{font-weight:700;color:var(--sauce);margin-bottom:14px}
+.annonce:empty{display:none}
+ol{flex:1;display:flex;flex-direction:column}
+@media (min-width:861px){
+  .tableau{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:6px 24px}
+  .tableau .sous{margin:0}
+  .tableau .annonce{grid-column:1/-1;margin:0}
+  .tableau .fixe{grid-column:3;grid-row:1;display:flex;margin:0;padding:0;border:0}
+  ol,.tableau .vide{grid-column:1/-1}
+  ol{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:0}
+  .tableau .rang{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;align-content:stretch;gap:6px;padding:12px 14px;border-top:0;border-left:2px solid var(--bord);margin:0;font-size:clamp(16px,1.2vw,18px)}
+  .tableau .rang:first-child{border-left:0;padding-left:0}
+  .tableau .statut{grid-column:1}
+  .tableau .rang[data-etat="Embarquement"]{padding-left:14px;border-left-color:var(--sauce)}
+  .tableau .rang[data-etat="Embarquement"] .statut{font-size:1.1em}
+
+}
+.rang{flex:1 0 auto;display:grid;grid-template-columns:6.4ch 1fr;gap:2px 16px;align-content:center;padding:14px 0;border-top:2px solid var(--bord);font-size:clamp(16px,1.4vw,20px);line-height:1.35}
+.jour{font-weight:700}
+.plat{overflow-wrap:anywhere}
+.statut{grid-column:2;font-weight:700;min-height:1.35em;color:var(--gris-tableau)}
+.rang[data-etat="Parti"]{color:#BDBDBD}
+.rang[data-etat="Prévu"] .statut{color:var(--blanc)}
+.rang[data-etat="Embarquement"]{background:var(--sauce);color:var(--noir);margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut);border-top-color:var(--sauce)}
+.rang[data-etat="Embarquement"] .statut{color:var(--noir);font-size:1.25em}
+.vide{padding:16px 0;border-top:2px solid var(--bord)}
+.fixe{padding-top:14px;border-top:2px solid var(--bord);display:grid;grid-template-columns:6.4ch 1fr;gap:16px;color:var(--sauce);font-size:clamp(16px,1.4vw,20px)}
+</style>

@@ -1,0 +1,24 @@
+{
+  "portions": [
+    { "nom": "Caravelle", "grammes": 180, "prix": "43.–" },
+    { "nom": "Super Caravelle", "grammes": 260, "prix": "51.–" },
+    { "nom": "A380", "grammes": 380, "prix": "61.–" },
+    { "nom": "A500", "grammes": 500, "prix": "80.–" }
+  ],
+  "entrees": [
+    { "nom": "Assiette de viande séchée / Valaisanne", "prix": "33.–" },
+    { "nom": "Salade Aviation", "detail": "Lardons, croûtons, Gruyère, œufs, tomates", "prix": "24.–" },
+    { "nom": "Croustillant de chèvre chaud et salade mêlée", "prix": "24.–" },
+    { "nom": "Escargots de Bourgogne gratinés", "detail": "6 pièces", "prix": "15.–" },
+    { "nom": "Assiette Chasseur", "detail": "Terrine de chevreuil au Porto, viande séchée de cerf, saladine et pain grillé", "prix": "24.–" },
+    { "nom": "Velouté de courge", "prix": "15.–" }
+  ],
+  "viandes": [
+    { "nom": "Entrecôte au poivre", "prix": "43.–" },
+    { "nom": "Entrecôte sauce aux morilles", "prix": "47.–" },
+    { "nom": "Hamburger", "detail": "200 g, sauce Caravelle, tomate, saladine, oignons confits", "prix": "28.–" },
+    { "nom": "Hamburger valaisan", "detail": "200 g, fromage à raclette, bacon grillé, sauce Caravelle", "prix": "29.–" },
+    { "nom": "Tartare Aviation", "detail": "Relevé", "prix": "39.–" },
+    { "nom": "Cordon Bleu de veau", "prix": "45.–" }
+  ]
+}

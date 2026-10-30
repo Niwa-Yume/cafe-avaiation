@@ -2,6 +2,8 @@
 
 **Décision du 30.10.2026 : direction B, avec le hublot de A pour les photos et le caviardage de C pour la sauce.**
 
+**Correction après test de la tranche :** B seule perdait le restaurant. Le rouge des nappes et une table illustrée avec la Caravelle ont été ajoutés (voir `docs/DESIGN_SYSTEM.md`). Le reste de ce document décrit les planches d'origine.
+
 | Direction | Planche | Bureau | Mobile |
 |---|---|---|---|
 | A, Cabine 1959 | [a.html](../design/directions/a.html) | [capture](../design/directions/captures/a-1440-premier-ecran.png) | [capture](../design/directions/captures/a-390-premier-ecran.png) |

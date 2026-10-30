@@ -1,0 +1,9 @@
+{
+  "prix": "22.–",
+  "plats": [
+    { "date": "2026-10-27", "plat": "Tartiflette savoyarde" },
+    { "date": "2026-10-28", "plat": "Osso buco de cerf rôti dans son jus et ses garnitures de chasse" },
+    { "date": "2026-10-29", "plat": "Filets mignons de porc à la moutarde, légumes, pâtes au beurre" },
+    { "date": "2026-10-30", "plat": "Panaché de poissons grillés, légumes et pommes vapeur" }
+  ]
+}

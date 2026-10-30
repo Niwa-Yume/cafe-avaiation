@@ -1,0 +1,72 @@
+---
+// La table vue du dessus : l'assiette, et la Caravelle qui passe au-dessus.
+const frites = [
+  [560, 250, 64], [592, 268, 38], [535, 290, 81], [610, 300, 22], [570, 320, 58],
+  [530, 345, 12], [600, 345, 74], [565, 372, 31], [622, 382, 49], [545, 405, 66],
+  [590, 415, 18], [520, 262, 27], [640, 330, 84], [508, 318, 52], [620, 262, 70],
+];
+const tranches = [28, 62, 96, 130];
+---
+<svg class="table" viewBox="0 0 760 640" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="avion" viewBox="0 0 400 400">
+      <path d="M178 172 28 262v20l150-44Zm44 0 150 90v20l-150-44Z" fill="var(--aile,#fff)" stroke="var(--trait,#000)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M186 338 128 372v14l62-18Zm28 0 58 34v14l-62-18Z" fill="var(--aile,#fff)" stroke="var(--trait,#000)" stroke-width="4" stroke-linejoin="round"/>
+      <rect x="152" y="272" width="24" height="62" rx="11" fill="var(--aile,#fff)" stroke="var(--trait,#000)" stroke-width="4"/>
+      <rect x="224" y="272" width="24" height="62" rx="11" fill="var(--aile,#fff)" stroke="var(--trait,#000)" stroke-width="4"/>
+      <path d="M200 12c14 0 24 34 24 80v236c0 24-12 46-24 60-12-14-24-36-24-60V92c0-46 10-80 24-80Z" fill="var(--aile,#fff)" stroke="var(--trait,#000)" stroke-width="4"/>
+      <path d="M190 50c4-14 16-14 20 0l-10 5Z" fill="var(--trait,#000)"/>
+      <path d="M196 76h8v250h-8Z" fill="var(--filet,#B3202A)"/>
+    </symbol>
+  </defs>
+
+  <circle cx="436" cy="336" r="296" fill="#8A141D"/>
+  <circle cx="424" cy="322" r="296" fill="#fff"/>
+  <circle cx="424" cy="322" r="226" fill="#F6F2EA"/>
+
+  <g>
+    <circle cx="300" cy="196" r="46" fill="#4E7B2F"/>
+    <circle cx="342" cy="178" r="38" fill="#6E9B3E"/>
+    <circle cx="344" cy="226" r="34" fill="#3F6A26"/>
+    <circle cx="296" cy="172" r="7" fill="#C8352E"/>
+    <circle cx="352" cy="196" r="7" fill="#C8352E"/>
+  </g>
+
+  <g>
+    {frites.map(([x, y, a]) => (
+      <rect x={x - 62} y={y - 9} width="124" height="18" rx="5" fill={a % 2 ? '#E9A326' : '#F4BC45'} stroke="#C9851A" stroke-width="2" transform={`rotate(${a} ${x} ${y})`} />
+    ))}
+  </g>
+
+  <g transform="translate(330 420) rotate(-12)">
+    <path d="M-158-72C-116-116-30-104 42-108c72-4 124 20 132 76 8 62-18 118-84 126-66 8-148 12-206-6-56-18-82-120-42-160Z" fill="#3A1A0E"/>
+    <path d="M-146-62C-108-100-28-92 40-96c64-4 112 18 120 68 7 56-16 106-76 112-62 8-138 10-192-6-50-16-74-106-38-140Z" fill="#6B3420"/>
+    {tranches.map((x) => (
+      <g>
+        <rect x={x} y="-86" width="30" height="166" rx="12" fill="#3A1A0E"/>
+        <rect x={x + 5} y="-76" width="20" height="146" rx="9" fill="#B5503F"/>
+        <rect x={x + 10} y="-62" width="10" height="118" rx="5" fill="#D9806C"/>
+      </g>
+    ))}
+    <path d="M-132-46-54 30M-104-66-26 10M-138 6-84 58" fill="none" stroke="#3A1A0E" stroke-width="9" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(40 96) scale(.8)">
+    <path d="M236 330c34-26 92-30 136-14 40 14 70 40 62 70-8 28-50 26-74 46-22 18-22 50-58 50-40 0-40-40-66-60-30-22-34-68 0-92Z" fill="#E5A917"/>
+    <path d="M242 334c32-24 88-28 128-14 36 12 62 34 56 60-7 24-46 24-70 42-22 16-22 44-54 44-34 0-36-36-60-54-28-20-32-58 0-78Z" fill="#FFC629"/>
+    <path d="M268 346c20-12 52-14 74-6" fill="none" stroke="#FFE28A" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <g class="vol">
+    <use href="#avion" x="-20" y="-40" width="400" height="400" transform="rotate(62 150 200) translate(26 40)" style="--aile:#8A141D;--trait:#8A141D;--filet:#8A141D"/>
+    <use href="#avion" x="-20" y="-40" width="400" height="400" transform="rotate(62 150 200)"/>
+  </g>
+</svg>
+
+<style>
+.table{display:block;width:100%;height:100%;overflow:visible}
+@media (prefers-reduced-motion:no-preference){
+  .vol{animation:vol 1.5s cubic-bezier(.16,.8,.3,1) both}
+  @keyframes vol{from{transform:translate(-520px,260px)}}
+}
+</style>

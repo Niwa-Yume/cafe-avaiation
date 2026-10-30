@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+
+const { src, alt, sizes = '(max-width: 860px) 70vw, 420px' } = Astro.props;
+const forme = 'M.5.03C.6.03.67.1.74.23L.96.7C1.03.87.93.97.78.97H.22C.07.97-.03.87.04.7L.26.23C.33.1.4.03.5.03Z';
+const id = `hublot-${Math.random().toString(36).slice(2, 8)}`;
+---
+<figure class="hublot">
+  <svg width="0" height="0" aria-hidden="true"><clipPath id={id} clipPathUnits="objectBoundingBox"><path d={forme} /></clipPath></svg>
+  <Image src={src} {alt} widths={[420, 840]} {sizes} loading="lazy" style={`clip-path:url(#${id})`} />
+</figure>
+
+<style>
+.hublot{aspect-ratio:9/10;width:100%}
+.hublot svg{position:absolute}
+img{width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+</style>

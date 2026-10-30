@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import { tel, telAffiche, maps } from '../data/infos.json';
+
+const { titre = "Café de l'Aviation, entrecôte sauce Caravelle à Vernier" } = Astro.props;
+const description = "Maquette non officielle. Entrecôte sauce Caravelle depuis 1959, à côté de Genève Aéroport. Réservation par téléphone.";
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#000000">
+  <title>{titre}</title>
+  <meta name="description" content={description}>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 100'%3E%3Cpath fill='%23FFC629' d='M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z'/%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+  <a class="saut" href="#contenu">Aller au contenu</a>
+  <header class="entete">
+    <a class="marque" href="/" translate="no">Café de l'Aviation</a>
+    <nav aria-label="Principale">
+      <ul>
+        <li><a href="/#departs">Départs</a></li>
+        <li><a href="/#flotte">La flotte</a></li>
+        <li><a href="/#carte">La carte</a></li>
+        <li><a href="/#venir">Venir</a></li>
+      </ul>
+    </nav>
+    <a class="tel" href={`tel:${tel}`}>{telAffiche}</a>
+  </header>
+
+  <main id="contenu"><slot /></main>
+
+  <footer class="pied">
+    <p>Maquette non officielle, réalisée sans lien avec le restaurant. Contenu repris de laviation.ch et du compte Instagram du restaurant.</p>
+  </footer>
+
+  <nav class="barre" aria-label="Actions rapides">
+    <a href={`tel:${tel}`}>Réserver</a>
+    <a href={maps}>Itinéraire</a>
+    <a href="/#carte">La carte</a>
+  </nav>
+</body>
+</html>
+
+<style>
+.entete{background:var(--noir);color:var(--blanc);display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 var(--gut);min-height:60px}
+.marque{font:900 26px/1 var(--titre);text-transform:uppercase;text-decoration:none;display:flex;align-items:center;min-height:var(--cible)}
+.entete ul{display:flex;gap:26px}
+.entete nav a{display:flex;align-items:center;min-height:var(--cible);text-decoration:none;font-weight:600}
+.entete nav a:hover,.marque:hover,.tel:hover{color:var(--sauce)}
+.tel{display:flex;align-items:center;min-height:var(--cible);font-weight:600;text-decoration:none;white-space:nowrap}
+.pied{background:var(--noir);color:var(--blanc);padding:22px var(--gut) 30px;font-size:16px}
+.pied p{max-width:72ch}
+.barre{display:none}
+@media (max-width:860px){
+  body{padding-bottom:calc(var(--barre) + env(safe-area-inset-bottom))}
+  .entete nav{display:none}
+  .barre{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;position:fixed;inset:auto 0 0;background:var(--sauce);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+  .barre a{background:var(--noir);color:var(--blanc);min-height:var(--barre);display:flex;align-items:center;justify-content:center;text-decoration:none;font:900 21px/1 var(--titre);text-transform:uppercase}
+  .barre a:first-child{background:var(--sauce);color:var(--noir)}
+  .barre a:active{background:var(--gris-filet);color:var(--blanc)}
+}
+</style>

@@ -1,0 +1,17 @@
+---
+// Page de contrôle : le tableau face au contenu réel difficile. Non liée au site.
+import Base from '../layouts/Base.astro';
+import Departs from '../components/Departs.astro';
+
+const long = 'Médaillons de chevreuil sauce grand veneur, spaetzli, marrons, choux de Bruxelles, gratin de courge, purée de céleri, poire pochée au vin rouge et tartelette aux airelles';
+---
+<Base titre="États du tableau">
+  <h1 class="visually-hidden">États du tableau</h1>
+  <Departs prix="22.–" plats={[
+    { date: '2026-10-27', plat: 'Trois plats seulement cette semaine' },
+    { date: '2026-10-29', plat: long },
+    { date: '2026-10-30', plat: 'Tartiflette' },
+    { date: '2026-10-28', plat: '   ' },
+  ]} />
+  <Departs prix="22.–" plats={[]} />
+</Base>

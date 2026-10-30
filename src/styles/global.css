@@ -1,0 +1,50 @@
+@font-face{font-family:"Big Shoulders Display";font-weight:900;src:url(/fonts/big-shoulders-display-latin-900-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Archivo;font-weight:400;src:url(/fonts/archivo-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Archivo;font-weight:600;src:url(/fonts/archivo-latin-600-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"B612 Mono";font-weight:400;src:url(/fonts/b612-mono-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"B612 Mono";font-weight:700;src:url(/fonts/b612-mono-latin-700-normal.woff2) format("woff2");font-display:swap}
+
+:root{
+  --sauce:#FFC629;
+  --nappe:#B3202A;
+  --noir:#000;
+  --blanc:#fff;
+  --gris-filet:#2A2A2A;
+  --gris-tableau:#A9A9A9;
+  --gris-texte:#3A3A3A;
+
+  --titre:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+  --texte:Archivo,system-ui,sans-serif;
+  --donnee:"B612 Mono",ui-monospace,monospace;
+
+  --gut:clamp(16px,2.4vw,32px);
+  --section:clamp(36px,5vw,64px);
+  --barre:64px;
+  --cible:44px;
+}
+
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-bottom:calc(var(--barre) + 16px);color-scheme:light}
+body{background:var(--sauce);color:var(--noir);font:400 18px/1.45 var(--texte)}
+a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+ul,ol{list-style:none;padding:0}
+:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+[id]{scroll-margin-top:12px}
+
+h2,h3{text-wrap:balance}
+.titre{font-family:var(--titre);font-weight:900;text-transform:uppercase;line-height:.88}
+.h2{font-size:clamp(52px,8.4vw,124px)}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Lien rapide au clavier */
+.saut{position:absolute;left:var(--gut);top:-80px;background:var(--sauce);color:var(--noir);padding:12px 16px;z-index:10;font-weight:600}
+.saut:focus{top:8px}
+
+/* Liste de carte : nom à gauche, prix aligné à droite */
+.ligne{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:12px 0;border-top:2px solid var(--noir)}
+.ligne small{display:block;font-size:16px;color:var(--gris-texte)}
+.ligne .prix{font:900 24px/1.1 var(--titre);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
