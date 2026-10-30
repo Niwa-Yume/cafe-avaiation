@@ -232,13 +232,23 @@ Accompagnement chasse : spaetzli, marrons, choux de Bruxelles, gratin de courge,
 - **Champs actuels :** nom, e-mail, téléphone, type de chambre, du, au, heure d'arrivée, message.
 - **Absent du site :** prix, petit-déjeuner, parking, et toute photo réelle des chambres.
 
-## 7. Ce que disent les clients
+## 7. Parking et accès
+
+Le site affiche cette information dans une image, en fenêtre à l'ouverture de l'accueil. Sa lecture répond à la valeur `[parking]` du brief :
+
+> **Parking à 3 minutes à pied !** Comme les places de parking sont limitées autour du restaurant, vous pouvez soit vous garer au Centre Commercial de Blandonnex qui est ouvert de 5h00 à 21h45 du lundi au vendredi et le samedi jusqu'à 19h45, soit il y a deux parkings ouverts 24h/24 de l'autre côté de la route de Meyrin, il suffit de traverser à pied la passerelle (50 mètres). Merci pour votre compréhension ! L'Aviation
+
+- Le texte dit « Blandonnex », et la zone s'appelle Blandonnet sur Google Maps. Corrigé en « Blandonnet » sur le futur site, à confirmer.
+- L'arrêt Blandonnet apparaît à côté sur Google Maps. Les lignes de bus et tram ne sont pas vérifiées.
+- Capture : `docs/references/actuel-popup-parking.jpg`.
+
+## 8. Ce que disent les clients
 
 Filtres d'avis Google les plus cités : *caravelle* (62), *entrecôte* (62), *service* (54), *terrasse* (43).
 
 Une terrasse existe donc, mais le site n'en parle jamais. Le brief non plus.
 
-## 8. Points à savoir
+## 9. Points à savoir
 
 | Sujet | Constat | Pour la démo |
 |---|---|---|
@@ -250,7 +260,7 @@ Une terrasse existe donc, mais le site n'en parle jamais. Le brief non plus.
 | Numéro mobile | Un +41 79 396 63 86 servait aux commandes en 2020 | Ne pas utiliser sans accord |
 | Copyright du site | « © 2023 », lien Maps en `goo.gl` | À actualiser |
 
-## 9. Images
+## 10. Images
 
 ### Dans `design/sources/`
 
@@ -272,11 +282,11 @@ Une terrasse existe donc, mais le site n'en parle jamais. Le brief non plus.
 
 **Conclusion pour la direction artistique :** le site ne contient qu'**une seule vraie photo** du lieu. La démo doit tenir par la typographie, la matière de la carte et le récit 1950–1959, avec des emplacements photo marqués. Les fauteuils d'avion vus sur Google sont le meilleur sujet d'un futur shooting.
 
-## 10. Couverture
+## 11. Couverture
 
 | Source | État |
 |---|---|
-| laviation.ch, 6 pages FR et EN | Lu en entier |
+| laviation.ch, 6 pages FR et EN | Texte relevé, et fenêtre parking lue. L'accueil a été vu en navigateur, pas chaque page EN |
 | Google Maps | Lu sans compte, affichage limité |
 | **Publications Google** | **Aucune visible sans compte** |
 | **Google Photos du restaurant** | **Privé, non accessible** |
