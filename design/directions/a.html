@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Direction A, Cabine 1959</title>
+<style>
+@font-face{font-family:Oranienbaum;src:url(fonts/oranienbaum-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Jost;font-weight:400;src:url(fonts/jost-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Jost;font-weight:500;src:url(fonts/jost-latin-500-normal.woff2) format("woff2");font-display:swap}
+:root{--sapin:#12352B;--velours:#0B241D;--cuir:#3B2114;--laiton:#D4AE5A;--ivoire:#F4ECDC;--encre:#14251F;--gut:clamp(16px,2.8vw,40px)}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--sapin);color:var(--ivoire);font:400 18px/1.5 Jost,system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laiton);outline-offset:3px}
+.serif{font-family:Oranienbaum,Georgia,serif;font-weight:400}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:18px var(--gut);gap:24px}
+.marque{font:400 24px/1 Oranienbaum,Georgia,serif;text-decoration:none}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav a{text-decoration:none;padding:10px 0;display:block}
+nav a:hover{color:var(--laiton)}
+.tel-haut{text-decoration:none;font-weight:500;color:var(--laiton);padding:10px 0;white-space:nowrap}
+
+.hero{padding:0 var(--gut) clamp(20px,3vw,36px)}
+h1{font:400 23.4vw/.84 Oranienbaum,Georgia,serif;letter-spacing:-.022em;padding-top:.04em}
+h1 span{display:block}
+.ligne1{display:flex!important;align-items:flex-end;gap:.1em}
+.hublot{height:.74em;width:auto;aspect-ratio:9/10;flex:none;transform-origin:50% 90%}
+.hublot-fond{fill:var(--velours)}
+.hublot-cadre{fill:none;stroke:var(--laiton);stroke-width:.018}
+.bandeau{display:grid;grid-template-columns:1.3fr 1fr auto;gap:24px;align-items:end;border-top:1px solid var(--laiton);margin-top:clamp(18px,2.6vw,32px);padding-top:14px}
+.bandeau p{max-width:34ch}
+.bouton{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;background:var(--laiton);color:var(--encre);font-weight:500;text-decoration:none;white-space:nowrap}
+.bouton:hover{background:var(--ivoire)}
+
+.departs{background:var(--ivoire);color:var(--encre);padding:clamp(40px,6vw,88px) var(--gut)}
+.tete{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:clamp(20px,3vw,40px)}
+h2{font:400 clamp(44px,7.6vw,110px)/.95 Oranienbaum,Georgia,serif;letter-spacing:-.015em}
+ol.vols{list-style:none;padding:0;border-top:1px solid var(--encre)}
+ol.vols li{display:grid;grid-template-columns:minmax(9ch,14rem) 1fr 11rem;gap:8px 28px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--encre)}
+.jour{font:400 clamp(26px,3vw,40px)/1.1 Oranienbaum,Georgia,serif}
+.plat{font-size:20px;line-height:1.35}
+.statut{justify-self:end;font-weight:500}
+.passe{color:#5A5546}
+.maintenant{background:var(--sapin);color:var(--ivoire);margin:0 calc(var(--gut)*-1);padding-inline:var(--gut)!important;border-bottom-color:var(--sapin)!important}
+.maintenant .statut{color:var(--sapin);background:var(--laiton);padding:4px 12px}
+
+.carte{background:var(--cuir);padding:clamp(40px,6vw,88px) var(--gut)}
+.colonnes{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(32px,6vw,96px);margin-top:clamp(24px,3vw,40px)}
+.portion{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 24px;align-items:baseline;border-top:1px solid var(--laiton);padding:10px 0 14px}
+.portion strong{font:400 clamp(38px,5.2vw,74px)/1.05 Oranienbaum,Georgia,serif}
+.portion .prix{font:400 clamp(30px,3.6vw,50px)/1 Oranienbaum,Georgia,serif;color:var(--laiton)}
+.portion small{font-size:17px}
+.lignes{list-style:none;padding:0}
+.lignes li{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-top:1px solid #7a5f43}
+.lignes em{font-style:normal;display:block;font-size:16px;color:#E5D9C4}
+h3{font-weight:500;font-size:20px;margin-bottom:10px}
+
+.salon{padding:clamp(40px,6vw,88px) var(--gut)}
+.rangee{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,2vw,28px);margin-top:28px}
+.vide{position:relative;aspect-ratio:9/10}
+.vide svg{position:absolute;inset:0;width:100%;height:100%}
+.vide p{position:absolute;inset:34% 20% 10%;display:flex;align-items:center;text-align:center;font-size:clamp(12px,1.15vw,15px);line-height:1.2}
+.pied{background:var(--velours);padding:24px var(--gut) 32px;font-size:16px}
+.pied p{max-width:70ch}
+
+.barre{display:none}
+@media (max-width:760px){
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  nav{display:none}
+  .bandeau{grid-template-columns:1fr;gap:12px}
+  .bandeau .bouton{display:none}
+  ol.vols li{grid-template-columns:1fr auto;}
+  .plat{grid-column:1/-1;grid-row:2}
+  .statut{grid-column:2;grid-row:1}
+  .colonnes{grid-template-columns:1fr}
+  .rangee{grid-template-columns:repeat(3,1fr)}
+  .barre{display:grid;grid-template-columns:repeat(3,1fr);position:fixed;inset:auto 0 0;background:var(--velours);border-top:1px solid var(--laiton);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+  .barre a{min-height:64px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:500}
+  .barre a:first-child{background:var(--laiton);color:var(--encre)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hublot{animation:ouvre .9s cubic-bezier(.2,.8,.2,1) both .15s}
+  @keyframes ouvre{from{transform:scale(.2) rotate(-14deg);opacity:0}}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <clipPath id="triangle" clipPathUnits="objectBoundingBox"><path d="M.5.03C.6.03.67.1.74.23L.96.7C1.03.87.93.97.78.97H.22C.07.97-.03.87.04.7L.26.23C.33.1.4.03.5.03Z"/></clipPath>
+</defs></svg>
+
+<header>
+  <a class="marque" href="#">Café de l'Aviation</a>
+  <nav aria-label="Principale"><ul>
+    <li><a href="#carte">La carte</a></li><li><a href="#">Vins</a></li><li><a href="#">Hôtel</a></li><li><a href="#">Groupes</a></li>
+  </ul></nav>
+  <a class="tel-haut" href="tel:+41223411232">022 341 12 32</a>
+</header>
+
+<main>
+<section class="hero">
+  <h1 aria-label="Sauce Caravelle">
+    <span class="ligne1" aria-hidden="true">Sauce
+      <svg class="hublot" viewBox="0 0 90 100" role="presentation">
+        <image href="../sources/salle-maquettes.jpg" x="-60" y="-6" width="186" height="124" clip-path="url(#tri-a)" preserveAspectRatio="xMidYMid slice"/>
+        <defs><clipPath id="tri-a"><path d="M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z"/></clipPath></defs>
+        <path d="M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z" fill="none" stroke="#D4AE5A" stroke-width="1.6"/>
+      </svg>
+    </span>
+    <span aria-hidden="true">Caravelle</span>
+  </h1>
+  <div class="bandeau">
+    <p>Recette secrète depuis 1959. L'entrecôte de notre maison, à côté de l'aéroport de Genève.</p>
+    <p>Restaurant familial depuis 1950. Mardi à vendredi dès 8h30, samedi dès 9h.</p>
+    <a class="bouton" href="tel:+41223411232">Réserver par téléphone</a>
+  </div>
+</section>
+
+<section class="departs" id="departs">
+  <div class="tete"><h2>Départs du jour</h2><p>Plat du jour à CHF 22.–, du mardi au vendredi.</p></div>
+  <ol class="vols">
+    <li><span class="jour passe">Mardi 27</span><span class="plat passe">Tartiflette savoyarde</span><span class="statut passe">Parti</span></li>
+    <li><span class="jour passe">Mercredi 28</span><span class="plat passe">Osso buco de cerf rôti dans son jus et ses garnitures de chasse</span><span class="statut passe">Parti</span></li>
+    <li><span class="jour passe">Jeudi 29</span><span class="plat passe">Filets mignons de porc à la moutarde, légumes, pâtes au beurre</span><span class="statut passe">Parti</span></li>
+    <li class="maintenant"><span class="jour">Vendredi 30</span><span class="plat">Panaché de poissons grillés, légumes et pommes vapeur</span><span class="statut">Embarquement</span></li>
+  </ol>
+</section>
+
+<section class="carte" id="carte">
+  <h2>Quatre appareils, une sauce</h2>
+  <div class="colonnes">
+    <div>
+      <div class="portion"><strong>Caravelle</strong><span class="prix">43.–</span><small>180 g, frites et salade</small></div>
+      <div class="portion"><strong>Super Caravelle</strong><span class="prix">51.–</span><small>260 g, frites et salade</small></div>
+      <div class="portion"><strong>A380</strong><span class="prix">61.–</span><small>380 g, frites et salade</small></div>
+      <div class="portion"><strong>A500</strong><span class="prix">80.–</span><small>500 g, frites et salade</small></div>
+    </div>
+    <div>
+      <h3>Pour commencer</h3>
+      <ul class="lignes">
+        <li><span>Salade Aviation<em>Lardons, croûtons, Gruyère, œufs, tomates</em></span><span>24.–</span></li>
+        <li><span>Escargots de Bourgogne gratinés<em>6 pièces</em></span><span>15.–</span></li>
+        <li><span>Assiette Chasseur<em>Terrine de chevreuil au Porto, viande séchée de cerf</em></span><span>24.–</span></li>
+        <li><span>Velouté de courge</span><span>15.–</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="salon">
+  <h2>Vue depuis le salon</h2>
+  <div class="rangee">
+    <div class="vide"><svg viewBox="0 0 90 100"><defs><clipPath id="tri-b"><path d="M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z"/></clipPath></defs><image href="../sources/salle-maquettes.jpg" x="-70" y="-8" width="192" height="128" clip-path="url(#tri-b)"/></svg></div>
+    <div class="vide"><svg viewBox="0 0 90 100"><path d="M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z" fill="#0B241D" stroke="#D4AE5A" stroke-dasharray="3 3"/></svg><p>Emplacement photo : les fauteuils d'avion</p></div>
+    <div class="vide"><svg viewBox="0 0 90 100"><path d="M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z" fill="#0B241D" stroke="#D4AE5A" stroke-dasharray="3 3"/></svg><p>Emplacement photo : la sauce nappée</p></div>
+    <div class="vide"><svg viewBox="0 0 90 100"><path d="M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z" fill="#0B241D" stroke="#D4AE5A" stroke-dasharray="3 3"/></svg><p>Emplacement photo : la terrasse</p></div>
+    <div class="vide"><svg viewBox="0 0 90 100"><path d="M45 3C54 3 60 10 67 23L86 70C93 87 84 97 70 97H20C6 97-3 87 4 70L23 23C30 10 36 3 45 3Z" fill="#0B241D" stroke="#D4AE5A" stroke-dasharray="3 3"/></svg><p>Emplacement photo : une chambre</p></div>
+  </div>
+</section>
+</main>
+
+<footer class="pied"><p>Planche de direction A, maquette non officielle. Statuts figés au vendredi 30 octobre 2026. Le hublot reprend la forme des fenêtres de la Caravelle, en service depuis 1959.</p></footer>
+
+<div class="barre" role="navigation" aria-label="Actions rapides">
+  <a href="tel:+41223411232">Réserver</a><a href="https://goo.gl/maps/Eu9T1vndAJXcMS8A8">Itinéraire</a><a href="#carte">La carte</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Direction C, Dossier 1959</title>
+<style>
+@font-face{font-family:"Courier Prime";font-weight:400;src:url(fonts/courier-prime-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Courier Prime";font-weight:700;src:url(fonts/courier-prime-latin-700-normal.woff2) format("woff2");font-display:swap}
+:root{--calque:#E3EAEC;--page:#F2F5F5;--encre:#1C2670;--tampon:#C21A1A;--gut:clamp(16px,3vw,44px)}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--calque);color:var(--encre);font:400 18px/1.5 "Courier Prime","Courier New",monospace}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tampon);outline-offset:2px}
+
+.onglets{display:flex;align-items:flex-end;gap:4px;padding:14px var(--gut) 0;overflow-x:auto}
+.onglets a{display:block;padding:10px 18px;min-height:44px;background:#CBD6DB;text-decoration:none;white-space:nowrap}
+.onglets a[aria-current]{background:var(--page);font-weight:700}
+.onglets a:hover{background:var(--page)}
+.onglets .tel{margin-left:auto;background:var(--encre);color:var(--page)}
+
+.feuille{background:var(--page);padding:clamp(20px,3.6vw,52px) var(--gut) clamp(32px,5vw,64px)}
+.ref{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.titre{position:relative;margin:clamp(10px,2.4vw,32px) 0 clamp(14px,2.4vw,30px)}
+h1{font:700 13vw/.93 "Courier Prime","Courier New",monospace;letter-spacing:-.05em;text-transform:uppercase}
+h1 span{display:block}
+.tampon{position:absolute;right:1%;top:-.2em;transform:rotate(-9deg);border:5px solid var(--tampon);color:var(--tampon);padding:6px 18px 4px;font:700 clamp(21px,3.5vw,50px)/1 "Courier Prime",monospace;letter-spacing:.02em;mix-blend-mode:multiply;pointer-events:none}
+.corps{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,5vw,72px)}
+.champ{display:grid;grid-template-columns:13ch 1fr;gap:4px 14px;padding:9px 0;border-top:1px solid var(--encre)}
+.champ dt{font-weight:700}
+.champ dd{margin:0}
+.barre-noire{all:unset;display:inline-block;background:var(--encre);color:var(--encre);cursor:pointer;min-height:44px;line-height:44px;padding:0 5px;margin:2px 0;user-select:none}
+.barre-noire:focus-visible{outline:3px solid var(--tampon);outline-offset:1px}
+.barre-noire:hover{background:#2E3AA0;color:#2E3AA0}
+.barre-noire[data-vu]{background:var(--page);color:var(--tampon);font-weight:700}
+.note{border:2px solid var(--encre);padding:14px 16px;align-self:start}
+.note h2{font-size:18px;font-weight:700;margin-bottom:6px}
+.note a{display:flex;align-items:center;min-height:48px;background:var(--encre);color:var(--page);text-decoration:none;justify-content:center;font-weight:700;margin-top:12px}
+
+.annexe{padding:clamp(28px,4vw,52px) var(--gut)}
+.annexe h2{font:700 clamp(36px,5.8vw,84px)/1 "Courier Prime",monospace;letter-spacing:-.04em}
+.annexe .chapeau{margin:8px 0 18px;max-width:58ch}
+.annexe.blanc{background:var(--page)}
+.mouv{width:100%;border-collapse:collapse;font-size:18px}
+.mouv th{text-align:left;font-weight:700;padding:8px 14px 8px 0;border-bottom:2px solid var(--encre)}
+.mouv td{padding:13px 14px 13px 0;border-bottom:1px solid var(--encre);vertical-align:top}
+.mouv td:first-child{white-space:nowrap}
+.mouv td:last-child{white-space:nowrap}
+.biffe{color:#4B5499}
+.aujourdhui td{font-weight:700;font-size:20px}
+.embarque{display:inline-block;border:3px solid var(--tampon);color:var(--tampon);padding:2px 8px;transform:rotate(-3deg)}
+
+.portion{display:grid;grid-template-columns:17ch 1fr 7ch;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid var(--encre)}
+.portion b{font-size:20px}
+.jauge{letter-spacing:-.02em;overflow:hidden;white-space:nowrap;color:var(--encre)}
+.portion span:last-child{text-align:right;font-weight:700;font-size:20px}
+.portion small{display:block;font-size:16px}
+.liste{list-style:none;padding:0;margin-top:22px}
+.liste li{display:flex;align-items:baseline;gap:8px;padding:5px 0}
+.liste .pts{flex:1;border-bottom:2px dotted var(--encre);transform:translateY(-4px);min-width:16px}
+.pied{padding:22px var(--gut) 30px;font-size:16px}
+.pied p{max-width:70ch}
+
+.barre{display:none}
+@media (max-width:760px){
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .onglets .tel{display:none}
+  h1{font-size:17.4vw}
+  .tampon{top:14px;right:-2px;font-size:17px;border-width:3px;padding:4px 8px 2px}
+  .corps{grid-template-columns:1fr}
+  .champ{grid-template-columns:1fr}
+  .mouv thead{position:absolute;left:-9999px}
+  .mouv,.mouv tbody,.mouv tr,.mouv td{display:block}
+  .mouv tr{padding:12px 0;border-bottom:1px solid var(--encre)}
+  .mouv td{border:0;padding:0}
+  .mouv td:last-child{white-space:normal;margin-top:3px}
+  .portion{grid-template-columns:1fr auto}
+  .jauge{grid-column:1/-1;grid-row:2}
+  .barre{display:grid;grid-template-columns:repeat(3,1fr);position:fixed;inset:auto 0 0;background:var(--encre);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+  .barre a{min-height:64px;display:flex;align-items:center;justify-content:center;color:var(--page);text-decoration:none;font-weight:700}
+  .barre a:first-child{background:var(--tampon)}
+}
+</style>
+</head>
+<body>
+<nav class="onglets" aria-label="Principale">
+  <a href="#" aria-current="page">Dossier</a><a href="#carte">Carte</a><a href="#">Vins</a><a href="#">Hôtel</a><a href="#">Groupes</a>
+  <a class="tel" href="tel:+41223411232">022 341 12 32</a>
+</nav>
+
+<main>
+<section class="feuille">
+  <div class="ref"><span>Café de l'Aviation, Vernier</span><span>Dossier n° 1959</span></div>
+  <div class="titre">
+    <h1><span>Sauce</span><span>Caravelle</span></h1>
+    <p class="tampon">CONFIDENTIEL</p>
+  </div>
+  <div class="corps">
+    <dl>
+      <div class="champ"><dt>Objet</dt><dd>La sauce de notre entrecôte, servie depuis 1959.</dd></div>
+      <div class="champ"><dt>Maison</dt><dd>Restaurant familial depuis 1950.</dd></div>
+      <div class="champ"><dt>Composition</dt><dd>
+        <button class="barre-noire" type="button" aria-label="Ingrédient classé, tenter de lire">xxxxxxxxxxxxxx</button>
+        <button class="barre-noire" type="button" aria-label="Ingrédient classé, tenter de lire">xxxxxxxxxxx</button>
+        <button class="barre-noire" type="button" aria-label="Ingrédient classé, tenter de lire">xxxxxxxxxxxxxxxxx</button>
+      </dd></div>
+    </dl>
+    <aside class="note">
+      <h2>Pour y goûter</h2>
+      <p>Réservation par téléphone uniquement. Mardi à vendredi dès 8h30, samedi dès 9h.</p>
+      <a href="tel:+41223411232">Appeler le 022 341 12 32</a>
+    </aside>
+  </div>
+</section>
+
+<section class="annexe" id="departs">
+  <h2>Annexe A. Départs du jour</h2>
+  <p class="chapeau">Plat du jour à CHF 22.–, du mardi au vendredi.</p>
+  <table class="mouv">
+    <thead><tr><th scope="col">Jour</th><th scope="col">Plat</th><th scope="col">Statut</th></tr></thead>
+    <tbody>
+      <tr class="biffe"><td>Mardi 27</td><td>Tartiflette savoyarde</td><td>Parti</td></tr>
+      <tr class="biffe"><td>Mercredi 28</td><td>Osso buco de cerf rôti dans son jus et ses garnitures de chasse</td><td>Parti</td></tr>
+      <tr class="biffe"><td>Jeudi 29</td><td>Filets mignons de porc à la moutarde, légumes, pâtes au beurre</td><td>Parti</td></tr>
+      <tr class="aujourdhui"><td>Vendredi 30</td><td>Panaché de poissons grillés, légumes et pommes vapeur</td><td><span class="embarque">Embarquement</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="annexe blanc" id="carte">
+  <h2>Annexe B. Les appareils</h2>
+  <p class="chapeau">Entrecôte sauce Caravelle, frites et salade. Une barre pour 20 g.</p>
+  <div class="portion"><b>Caravelle<small>180 g</small></b><span class="jauge" aria-hidden="true">█████████</span><span>43.–</span></div>
+  <div class="portion"><b>Super Caravelle<small>260 g</small></b><span class="jauge" aria-hidden="true">█████████████</span><span>51.–</span></div>
+  <div class="portion"><b>A380<small>380 g</small></b><span class="jauge" aria-hidden="true">███████████████████</span><span>61.–</span></div>
+  <div class="portion"><b>A500<small>500 g</small></b><span class="jauge" aria-hidden="true">█████████████████████████</span><span>80.–</span></div>
+  <ul class="liste">
+    <li>Salade Aviation<span class="pts"></span>24.–</li>
+    <li>Escargots de Bourgogne, 6 pièces<span class="pts"></span>15.–</li>
+    <li>Assiette Chasseur<span class="pts"></span>24.–</li>
+    <li>Velouté de courge<span class="pts"></span>15.–</li>
+  </ul>
+</section>
+</main>
+
+<footer class="pied"><p>Planche de direction C, maquette non officielle. Statuts figés au vendredi 30 octobre 2026. Aucune photo requise. Avec un shooting, chaque annexe peut recevoir une épreuve collée au dossier.</p></footer>
+
+<div class="barre" role="navigation" aria-label="Actions rapides">
+  <a href="tel:+41223411232">Réserver</a><a href="https://goo.gl/maps/Eu9T1vndAJXcMS8A8">Itinéraire</a><a href="#carte">La carte</a>
+</div>
+
+<script>
+// Les barres noires répondent, sans jamais livrer la recette
+const reponses = ['Bien essayé.', 'Toujours non.', 'Secret depuis 1959.'];
+document.querySelectorAll('.barre-noire').forEach((b, i) => b.addEventListener('click', () => {
+  const vu = b.toggleAttribute('data-vu');
+  b.textContent = vu ? reponses[i] : 'x'.repeat(11 + i * 3);
+}));
+</script>
+</body>
+</html>

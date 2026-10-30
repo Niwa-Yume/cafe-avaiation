@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Direction B, Salle des départs</title>
+<style>
+@font-face{font-family:"Big Shoulders Display";font-weight:800;src:url(fonts/big-shoulders-display-latin-800-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Big Shoulders Display";font-weight:900;src:url(fonts/big-shoulders-display-latin-900-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Archivo;font-weight:400;src:url(fonts/archivo-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:Archivo;font-weight:600;src:url(fonts/archivo-latin-600-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"B612 Mono";font-weight:400;src:url(fonts/b612-mono-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"B612 Mono";font-weight:700;src:url(fonts/b612-mono-latin-700-normal.woff2) format("woff2");font-display:swap}
+:root{--sauce:#FFC629;--noir:#000;--blanc:#fff;--gris:#2A2A2A;--tableau:#A9A9A9;--gut:clamp(16px,2.4vw,32px)}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--sauce);color:var(--noir);font:400 18px/1.45 Archivo,system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+.tt{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.005em}
+
+header{background:var(--noir);color:var(--blanc);display:flex;justify-content:space-between;align-items:center;padding:0 var(--gut);min-height:60px;gap:20px}
+.marque{font:800 26px/1 "Big Shoulders Display",Impact,sans-serif;text-decoration:none;text-transform:uppercase}
+nav ul{display:flex;gap:26px;list-style:none;padding:0}
+nav a{display:block;padding:18px 0;text-decoration:none;font-weight:600}
+nav a:hover{color:var(--sauce)}
+
+.salle{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);min-height:calc(100vh - 60px)}
+.annonce{padding:clamp(18px,2.6vw,36px) var(--gut);display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+h1{font:900 11.3vw/.86 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.005em;padding-top:.06em}
+h1 span{display:block}
+.sous{font-weight:600;font-size:clamp(19px,1.7vw,24px);max-width:30ch;margin-top:14px;line-height:1.25}
+.panneaux{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.panneau{background:var(--noir);color:var(--sauce);text-decoration:none;padding:12px 14px 14px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:128px}
+.panneau svg{width:38px;height:38px;fill:currentColor}
+.panneau b{font:800 clamp(24px,2.2vw,32px)/1 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase}
+.panneau small{display:block;font:400 15px/1.3 Archivo,sans-serif;color:var(--blanc);margin-top:5px}
+.panneau:hover{background:var(--gris)}
+
+.tableau{background:var(--noir);color:var(--blanc);padding:clamp(16px,2.4vw,32px) var(--gut);font-family:"B612 Mono",ui-monospace,monospace;display:flex;flex-direction:column}
+.tableau h2{font:900 clamp(38px,4.6vw,66px)/.95 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;color:var(--sauce)}
+.tableau>p{font-size:15px;color:var(--tableau);margin:6px 0 14px}
+.rang{flex:1 0 auto;display:grid;grid-template-columns:6.4ch 1fr;gap:2px 16px;align-content:center;padding:14px 0;border-top:2px solid var(--gris);font-size:clamp(16px,1.4vw,20px);line-height:1.35}
+.rang .jour{font-weight:700}
+.rang .statut{grid-column:2;font-weight:700;color:var(--tableau)}
+.rang.parti{color:#BDBDBD}
+.rang.boarding{background:var(--sauce);color:var(--noir);margin:0 calc(var(--gut)*-1);padding:18px var(--gut);border-top:0;font-size:clamp(18px,1.5vw,22px)}
+.rang.boarding .statut{color:var(--noir);font-size:1.25em}
+.fixe{padding-top:14px;border-top:2px solid var(--gris);display:grid;grid-template-columns:6.4ch 1fr;gap:16px;color:var(--sauce);font-size:clamp(16px,1.25vw,18px)}
+
+.flotte{padding:clamp(32px,5vw,64px) var(--gut)}
+.flotte h2,.reste h2{font:900 clamp(52px,8.4vw,124px)/.88 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase}
+.flotte>p{margin:12px 0 22px;font-weight:600}
+.echelle{display:flex;gap:8px;align-items:stretch}
+.appareil{background:var(--noir);color:var(--blanc);padding:14px 16px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;min-height:232px}
+.appareil h3{font:900 clamp(28px,2.7vw,40px)/.92 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;color:var(--sauce)}
+.appareil p{font:400 16px/1.35 "B612 Mono",monospace}
+.appareil .prix{font:800 clamp(32px,3vw,44px)/1 "Big Shoulders Display",Impact,sans-serif;color:var(--blanc);display:block;margin-top:6px}
+
+.reste{background:var(--blanc);padding:clamp(32px,5vw,64px) var(--gut)}
+.reste ul{list-style:none;padding:0;columns:2;column-gap:clamp(24px,5vw,72px);margin-top:18px}
+.reste li{break-inside:avoid;display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-top:2px solid var(--noir)}
+.reste em{display:block;font-style:normal;font-size:16px;color:#3A3A3A}
+.reste b{font:800 24px/1.1 "Big Shoulders Display",Impact,sans-serif}
+.pied{background:var(--noir);color:var(--blanc);padding:22px var(--gut) 30px;font-size:16px}
+.pied p{max-width:72ch}
+
+.barre{display:none}
+@media (max-width:860px){
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  nav,.panneaux{display:none}
+  .salle{grid-template-columns:minmax(0,1fr);min-height:0}
+  h1{font-size:22.4vw}
+  .annonce{padding-bottom:16px}
+  .echelle{flex-direction:column}
+  .appareil{flex:none!important;min-height:0;flex-direction:row;align-items:center;gap:12px}
+  .appareil:nth-child(1){width:64%}.appareil:nth-child(2){width:76%}.appareil:nth-child(3){width:88%}.appareil:nth-child(4){width:100%}
+  .appareil p{text-align:right;white-space:nowrap}
+  .reste ul{columns:1}
+  .barre{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;position:fixed;inset:auto 0 0;background:var(--sauce);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+  .barre a{background:var(--noir);color:var(--blanc);min-height:62px;display:flex;align-items:center;justify-content:center;text-decoration:none;font:800 21px/1 "Big Shoulders Display",Impact,sans-serif;text-transform:uppercase}
+  .barre a:first-child{background:var(--sauce);color:var(--noir)}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="marque" href="#">Café de l'Aviation</a>
+  <nav aria-label="Principale"><ul><li><a href="#carte">La carte</a></li><li><a href="#">Vins</a></li><li><a href="#">Hôtel</a></li><li><a href="#">Groupes</a></li></ul></nav>
+  <a href="tel:+41223411232" style="font-weight:600;text-decoration:none;white-space:nowrap;padding:14px 0">022 341 12 32</a>
+</header>
+
+<main>
+<div class="salle">
+  <section class="annonce">
+    <div>
+      <h1><span>Entrecôte</span><span>sauce</span><span>Caravelle</span></h1>
+      <p class="sous">Recette secrète depuis 1959. Restaurant familial depuis 1950.</p>
+    </div>
+    <div class="panneaux">
+      <a class="panneau" href="tel:+41223411232">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2 10 7.2 7.9 9.7c1.2 2.6 3.8 5.2 6.4 6.4l2.5-2.1L22 17.4c-.4 2.6-2.7 4.6-5.3 4.6C9 22 2 15 2 7.3 2 4.700 4 2.400 6.600 2Z"/></svg>
+        <span><b>Réserver</b><small>Par téléphone uniquement</small></span></a>
+      <a class="panneau" href="https://goo.gl/maps/Eu9T1vndAJXcMS8A8">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 16.200 7.800H8V4h15v15h-3.800v-8.200L8 22Z"/></svg>
+        <span><b>Itinéraire</b><small>Chemin des Coquelicots 18</small></span></a>
+      <a class="panneau" href="#carte">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h16v20H4Zm3 4v2h10V6Zm0 5v2h10v-2Zm0 5v2h7v-2Z"/></svg>
+        <span><b>La carte</b><small>Mardi à samedi</small></span></a>
+    </div>
+  </section>
+
+  <section class="tableau" aria-labelledby="t">
+    <h2 id="t">Départs du jour</h2>
+    <p>Plat du jour à 22 francs, mardi à vendredi</p>
+    <div class="rang parti"><span class="jour">Mar 27</span><span>Tartiflette savoyarde</span><span class="statut">Parti</span></div>
+    <div class="rang parti"><span class="jour">Mer 28</span><span>Osso buco de cerf rôti dans son jus et ses garnitures de chasse</span><span class="statut">Parti</span></div>
+    <div class="rang parti"><span class="jour">Jeu 29</span><span>Filets mignons de porc à la moutarde, légumes, pâtes au beurre</span><span class="statut">Parti</span></div>
+    <div class="rang boarding"><span class="jour">Ven 30</span><span>Panaché de poissons grillés, légumes et pommes vapeur</span><span class="statut" id="flap" aria-label="Embarquement">Embarquement</span></div>
+    <div class="fixe"><span>Cuisine</span><span>11h30 à 14h30 et 19h00 à 22h15</span></div>
+  </section>
+</div>
+
+<section class="flotte" id="carte">
+  <h2>La flotte</h2>
+  <p>Quatre tailles à l'échelle, toujours avec frites et salade.</p>
+  <div class="echelle">
+    <article class="appareil" style="flex:180"><h3>Caravelle</h3><p>180 g<span class="prix">43.–</span></p></article>
+    <article class="appareil" style="flex:260"><h3>Super Caravelle</h3><p>260 g<span class="prix">51.–</span></p></article>
+    <article class="appareil" style="flex:380"><h3>A380</h3><p>380 g<span class="prix">61.–</span></p></article>
+    <article class="appareil" style="flex:500"><h3>A500</h3><p>500 g<span class="prix">80.–</span></p></article>
+  </div>
+</section>
+
+<section class="reste">
+  <h2>Avant le départ</h2>
+  <ul>
+    <li><span>Salade Aviation<em>Lardons, croûtons, Gruyère, œufs, tomates</em></span><b>24.–</b></li>
+    <li><span>Escargots de Bourgogne gratinés<em>6 pièces</em></span><b>15.–</b></li>
+    <li><span>Assiette Chasseur<em>Terrine de chevreuil au Porto, viande séchée de cerf</em></span><b>24.–</b></li>
+    <li><span>Velouté de courge</span><b>15.–</b></li>
+  </ul>
+</section>
+</main>
+
+<footer class="pied"><p>Planche de direction B, maquette non officielle. Statuts figés au vendredi 30 octobre 2026. Aucune photo requise : si un shooting a lieu, l'entrecôte prend la place du grand titre sur une section dédiée.</p></footer>
+
+<div class="barre" role="navigation" aria-label="Actions rapides">
+  <a href="tel:+41223411232">Réserver</a><a href="https://goo.gl/maps/Eu9T1vndAJXcMS8A8">Itinéraire</a><a href="#carte">La carte</a>
+</div>
+
+<script>
+// Un seul passage du tableau à palettes, sur le statut du jour
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const el = document.getElementById('flap'), mot = el.textContent, abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let i = 0;
+  const t = setInterval(() => {
+    i += .5;
+    el.textContent = [...mot].map((c, n) => n < i ? c : abc[Math.random() * 26 | 0]).join('');
+    if (i >= mot.length) { clearInterval(t); el.textContent = mot; }
+  }, 32);
+}
+</script>
+</body>
+</html>
