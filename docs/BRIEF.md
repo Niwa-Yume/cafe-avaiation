@@ -49,6 +49,8 @@ Chaque parcours doit aboutir en **≤ 2 interactions** depuis l'accueil.
 ### 4.1 Base de contenu : le site actuel
 https://www.laviation.ch/ (+ `/vins`, `/hotel`, version EN) = **base de contenu et d'arborescence**, pas de design. On reprend les textes, la carte, les prix, les infos pratiques ; on jette la mise en page Duda.
 
+La fiche Google du restaurant et son Google Photos complètent cette base (publications, photos). Seules les photos appartenant au restaurant sont utilisables : pas de photos déposées par des clients sans leur accord écrit.
+
 ### 4.2 Références imposées (fournies par moi)
 
 | Réf. | Source | Ce que je veux en retenir (hypothèse à vérifier en phase 1) |
@@ -128,9 +130,10 @@ Pages non maquettées : décliner le système visuel de la direction retenue. Ch
 
 - **Réservation** : liens `tel:` partout + barre d'actions fixe sur mobile. Pas de réservation en ligne.
 - **Formulaires** : groupes, hôtel, liste d'attente « sauce à emporter », contact.
-  - Backend le plus simple possible, avec anti-spam.
-  - Case de consentement pour l'email (nLPD).
-  - États : vide, erreur, envoi en cours, succès, échec réseau.
+  - **Envoi par WhatsApp uniquement** : le site prépare le message, le visiteur l'envoie depuis son WhatsApp. Pas d'email, pas de backend.
+  - Téléphone toujours affiché en repli pour qui n'a pas WhatsApp.
+  - La confidentialité (nLPD) mentionne le passage par WhatsApp.
+  - États : vide, erreur de saisie, succès (WhatsApp ouvert).
 - **Plat du jour sur WhatsApp** : un simple lien vers une chaîne WhatsApp (créée par le client).
 - **Phase 2, bons cadeaux** : paiement en ligne (carte + TWINT), puis envoi du billet par email. Solution la moins coûteuse à maintenir (ex. lien de paiement hébergé).
 
