@@ -180,7 +180,7 @@ Vérifications du 30.10.2026 sous Node 26.13.0, avec Astro 7.4.4.
 | JS de l'accueil | < 100 Ko gzip | **0,7 Ko** |
 | Poids total | | 156 Ko |
 
-À refaire sur l'adresse Vercel réelle : un serveur local ne reflète pas le réseau.
+**Sur l'adresse en ligne `laviation-demo.vercel.app`, même jour :** performance 100, accessibilité 100, bonnes pratiques 100, SEO 66 à cause du `noindex` volontaire, LCP 0,8 s, CLS 0, 129 Ko.
 
 ### Tests
 
@@ -210,7 +210,6 @@ Non applicable : la règle de capitales sur les titres anglais, et la deuxième 
 - Vrai téléphone et vrai lecteur d'écran (VoiceOver, TalkBack).
 - Safari et Firefox : seul Chromium a été utilisé.
 - Mode paysage sur téléphone à encoche.
-- Déploiement Vercel.
 - Lecture du Google Sheet : les données viennent encore de fichiers JSON (lot 1).
 
 ### Limites de la démo
