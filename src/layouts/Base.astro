@@ -62,6 +62,10 @@ const description = "Maquette non officielle. Entrecôte sauce Caravelle depuis 
     // Le menu se referme quand on choisit une destination
     const menu = document.querySelector('.menu');
     menu.addEventListener('click', (e) => { if (e.target.closest('a')) menu.open = false; });
+    document.addEventListener('click', (e) => { if (!menu.contains(e.target)) menu.open = false; });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+    });
   </script>
 </body>
 </html>

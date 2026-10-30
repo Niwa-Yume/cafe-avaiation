@@ -1,7 +1,7 @@
 ---
 import { telAffiche, tel } from '../data/infos.json';
 
-const { plats: saisis = [], prix } = Astro.props;
+const { plats: saisis = [], prix, id = 'departs' } = Astro.props;
 const plats = saisis.filter(({ date, plat }) => date && plat?.trim());
 const jours = new Intl.DateTimeFormat('fr-CH', { weekday: 'short', day: 'numeric', timeZone: 'UTC' });
 const libelle = (date) => {
@@ -9,8 +9,8 @@ const libelle = (date) => {
   return `${j[0].toUpperCase()}${j.slice(1)} ${n}`;
 };
 ---
-<section class="tableau" id="departs" aria-labelledby="titre-departs" data-departs>
-  <h2 id="titre-departs" class="titre">Départs du jour</h2>
+<section class="tableau" {id} aria-labelledby={`titre-${id}`} data-departs>
+  <h2 id={`titre-${id}`} class="titre">Départs du jour</h2>
   <p class="sous">Plat du jour{prix && ` à ${prix.replace('.–', '')} francs`}, mardi à vendredi</p>
   <p class="annonce" data-annonce role="status"></p>
 
@@ -92,7 +92,7 @@ ol{flex:1;display:flex;flex-direction:column}
 .jour{font-weight:700}
 .plat{overflow-wrap:anywhere}
 .statut{grid-column:2;font-weight:700;min-height:1.35em;color:var(--gris-tableau)}
-.rang[data-etat="Parti"]{color:#BDBDBD}
+.rang[data-etat="Parti"]{color:var(--gris-passe)}
 .rang[data-etat="Prévu"] .statut{color:var(--blanc)}
 .rang[data-etat="Embarquement"]{background:var(--sauce);color:var(--noir);margin-inline:calc(var(--gut)*-1);padding-inline:var(--gut);border-top-color:var(--sauce)}
 .rang[data-etat="Embarquement"] .statut{color:var(--noir);font-size:1.25em}

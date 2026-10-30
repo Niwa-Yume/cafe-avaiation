@@ -10,6 +10,11 @@ Direction validée : **B, Salle des départs**, avec le hublot de A pour les pho
 | `ui-ux-pro-max` | `--design-system` : rouge et or pour l'appétit, éviter images médiocres et horaires périmés. Règles UX sur l'alt, le mouvement limité à 1 ou 2 éléments, le survol. Police Playfair et schéma en entonnoir écartés, conformément au `CLAUDE.md` |
 | `web-design-guidelines` | Audit, voir plus bas |
 
+**Deuxième passe, dans l'ordre :**
+1. `ui-ux-pro-max` a audité les parcours du brief : l'hôtel et les groupes étaient absents de l'accueil, et le plat du jour trop loin sur mobile. Section Faire escale, menu mobile, raccourci Aujourd'hui et jours passés réduits en découlent.
+2. `frontend-design` a traité le bas de page, qui ressemblait à une pile de blocs : coulure de sauce, fuselage, hublot relié au fuselage, signature.
+3. `web-design-guidelines` a audité le code final.
+
 Prototype : `src/`. Lancement :
 
 ```bash
@@ -105,6 +110,24 @@ Liste ordonnée de jours, avec un `<time>` par plat. Colonnes au bureau, lignes 
 
 La date de référence est toujours celle de **Genève**, pas celle de l'appareil.
 
+### Menu mobile
+`<details>` natif : fonctionne sans JavaScript pour l'ouverture. Se referme au choix d'un lien, sur Échap et au clic extérieur, avec le focus rendu au bouton. Remplace le téléphone de l'en-tête, déjà présent dans la barre.
+
+### Raccourci « Aujourd'hui »
+Sur mobile uniquement, sous la promesse : le plat du jour, cliquable vers le tableau. Sinon l'annonce du jour, ou un lien vers les plats sans JavaScript. Sa hauteur est réservée pour éviter tout décalage.
+
+### Coulure de sauce
+Frontière entre la flotte et la sauce, en SVG. Les gouttes s'allongent au défilement avec `animation-timeline`. Si le navigateur ne le gère pas ou si reduced-motion est actif, elles sont simplement complètes.
+
+### Fuselage
+Bande blanche à hublots triangulaires et filet sauce, en ouverture d'« À bord ». Décorative, masquée aux lecteurs d'écran. Le grand hublot photo la chevauche.
+
+### Faire escale
+Hôtel et groupes sur l'accueil, avec contact téléphonique en attendant les formulaires WhatsApp du lot 3.
+
+### Signature
+Le nom du restaurant en pleine largeur dans le pied de page.
+
 ### Bouton Réserver
 Fond sauce, texte noir, numéro de téléphone visible dans le libellé. Masqué sur mobile, où la barre le remplace.
 
@@ -128,6 +151,7 @@ Forme unique de toutes les photos : un triangle arrondi, repris de la Caravelle.
 | Élément | Repos | Survol | Actif | Focus clavier |
 |---|---|---|---|---|
 | Lien d'en-tête | Blanc | Sauce | | Contour 3 px |
+| Menu mobile | Sauce | | Ouvert sous l'en-tête | Contour 3 px |
 | Bouton Réserver | Sauce | Blanc | Décalage de 1 px | Contour 3 px |
 | Barre mobile | Noir, ou sauce pour Réserver | | Gris filet | Contour 3 px |
 | Caviardage | Bloc sauce | Bloc blanc | Réponse encadrée | Contour blanc 3 px |
@@ -149,11 +173,12 @@ Le message reste une demande. Aucun formulaire de réservation de table.
 
 | Animation | Déclencheur | Durée | Reduced-motion |
 |---|---|---|---|
+| Coulure de sauce | Défilement, CSS natif | Liée au défilement | Complète, sans mouvement |
 | La Caravelle arrive sur la table | Chargement, une seule fois | 1,5 s, `transform` seulement | Avion déjà en place |
 | Tableau à palettes sur le statut du jour | Chargement, une seule fois | Moins d'une seconde | Texte direct, contrôlé |
 | Défilement doux vers les ancres | Clic | Navigateur | Désactivé par la règle CSS |
 
-Aucune bibliothèque d'animation. Aucune animation au défilement. Toute nouvelle animation doit dire à quoi elle sert.
+Aucune bibliothèque d'animation. La coulure est la seule animation au défilement. Toute nouvelle animation doit dire à quoi elle sert.
 
 ## Accessibilité
 
@@ -177,10 +202,10 @@ Vérifications du 30.10.2026 sous Node 26.13.0, avec Astro 7.4.4.
 | SEO, même page sans `noindex` | ≥ 95 | **100** |
 | LCP | < 2,5 s | **1,1 s** |
 | CLS | < 0,1 | **0** |
-| JS de l'accueil | < 100 Ko gzip | **0,7 Ko** |
-| Poids total | | 156 Ko |
+| JS de l'accueil | < 100 Ko gzip | **0,9 Ko** |
+| Poids total | | 163 Ko |
 
-**Sur l'adresse en ligne `laviation-demo.vercel.app`, même jour :** performance 100, accessibilité 100, bonnes pratiques 100, SEO 66 à cause du `noindex` volontaire, LCP 0,8 s, CLS 0, 129 Ko.
+Le tableau ci-dessus est mesuré sur la version finale, en local.
 
 ### Tests
 
@@ -203,7 +228,7 @@ Vérifications du 30.10.2026 sous Node 26.13.0, avec Astro 7.4.4.
 
 Non applicable : la règle de capitales sur les titres anglais, et la deuxième personne, car le texte vient du restaurant.
 
-**Après la révision :** relecture du nouveau code selon les mêmes règles, sans nouveau constat. Tests, états, clavier et Lighthouse ont été relancés sur cette version.
+**Passe complète après les parcours et la révision visuelle :** aucun bloquant. Deux importants corrigés : fermeture du menu mobile (Échap, clic extérieur) et marges d'encoche. Quatre mineurs corrigés : identifiants dupliqués sur `/etats/`, deux couleurs en dur, mots orphelins. Tests, états, clavier et Lighthouse relancés ensuite.
 
 ### Non vérifié
 
